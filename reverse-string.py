@@ -1,5 +1,5 @@
 
-toReverse = "Hello world"
+toReverse = raw_input("Enter a string:")
  
 
 def reverseString(x):
