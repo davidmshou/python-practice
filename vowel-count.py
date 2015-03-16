@@ -6,4 +6,4 @@ for letter in toBeCounted:
         numVowels += 1
     
 
-print "You have "  + str(numVowels) + " vowels, CHICKEN!!!"
+print "You have "  + str(numVowels) + " vowels, CHICKEN!!!"v
