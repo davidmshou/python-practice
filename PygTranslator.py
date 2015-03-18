@@ -5,8 +5,7 @@ import sys
 import string
 
 print('###Pyg Translator v0.2###')
-
-
+print()
 print('''What do you want to do? \n
 Type: /n
 A for English-to-Pyg /n
@@ -19,78 +18,110 @@ U for upper case/n
 PL or PU for a combination/n''')
 userInput = input()
 
-def pigFromEnglish(phrase):
+#newPhrase = ''
+
+vowels = ['a','e','i','o','u']
+consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', \
+              'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+
+def englishToPig(phrase):
+    newPhrase = ''
     print('''this function isn't finished yet!''')
-    input('bye')
+    for word in phrase:
+        newPhrase += etopWord(word) + ' '
+        print(newPhrase)#[0:len(newPhrase) - 1])
+    
+    input('Goodbye')
     sys.exit()
+
+def etopWord(word):
+    #for i in range(0,len(word))
+    word = word.lower()
+    newWord = ''
+    consSuffix = "ay"
+    vowelSuffix = 'way'
+    firstLetter = word[0:1]
+    noFirstLetter = word[1: ]
+    #if word starts with a diphthong
+    if word[0:2] == 'ch' or word[0:2] == 'qu' or word[0:2] == 'th' or \
+           word[0:2] == 'ph':
+        firstLetter = word[0:2]
+        noFirstLetter = word[2: ]
+        newWord += noFirstLetter + firstLetter + consSuffix
+    #if word starts with vowel
+    elif word[0] in vowels:
+        newWord += firstLetter + noFirstLetter + vowelSuffix
+    #if no special case then do standard translation
+    else:
+        firstLetter = word[0]
+        noFirstLetter = word[1: ]
+        newWord += noFirstLetter + firstLetter + consSuffix
+
+    return newWord
+
 
 def pigToEnglish(phrase):
     print('''this function isn't finished yet!''')
-    input('bye')
+    input('Goodbye')
     sys.exit()
 
 
-def goatFromEnglish(phrase):
+def englishToGoat(phrase):
     print('''this function isn't finished yet!''')
-    input('bye')
+    input('Goodbye')
     sys.exit()
 
 
 def goatToEnglish(phrase):
     print('''this function isn't finished yet!''')
-    input('bye')
+    input('Goodbye')
     sys.exit()
+
+def stripPunctuation(phrase):
+    newPhrase = ''.join(ch for ch in phrase if ch not in \
+                        string.punctuation)
+    return newPhrase
 
     
-if userInput == 'A'.lower():
+if userInput.lower() == 'a':
     userInput = input('Give me a phrase: ')
-    print(pigFromEnglish(userInput))
-elif userInput == 'B'.lower():
+    print(englishToPig(userInput))
+elif userInput.lower() == 'b':
     userInput = input('Give me a phrase: ')
     print(pigToEnglish(userInput))
-elif userInput == 'C'.lower():
+elif userInput.lower() == 'c':
     userInput = input('Give me a phrase: ')
-    print(goatFromEnglish(userInput))
-elif userInput == 'D'.lower():
+    print(englishToGoat(userInput))
+elif userInput.lower() == 'd':
     userInput = input('Give me a phrase: ')
     print(goatToEnglish(userInput))
-elif userInput == 'P'.lower():
-    userInput = input('Give me a phrase: ')
-    userInput = userInput.translate(string.maketrans("",""), \
-                                    string.punctuation)
-    print(userInput)
+elif userInput.lower() == 'p':
+    newPhrase = input('Give me a phrase: ')
+    print(stripPunctuation(newPhrase))
     print()
-    input('bye')
+    input('Goodbye')
     sys.exit()
-elif userInput == 'L'.lower():
-    userInput = input('Give me a phrase: ')
-    userInput = userInput.lower()
+elif userInput.lower() == 'l':
+    newPhrase = input('Give me a phrase: ')
+    print(newPhrase.lower())
     print()
-    input('bye')
+    input('Goodbye')
     sys.exit()
-elif userInput == 'U'.lower():
-    userInput = input('Give me a phrase: ')
-    userInput = userInput.upper()
+elif userInput.lower() == 'u':
+    newPhrase = input('Give me a phrase: ')
+    print(newPhrase.upper())
     print()
-    input('bye')
+    input('Goodbye')
     sys.exit()
-elif userInput == 'UP'.lower() or userInput == 'PU'.lower():
-    userInput = input('Give me a phrase: ')
-    userInput = userInput.translate(string.maketrans("",""), \
-                                    string.punctuation)
-    userInput = userInput.upper()
+elif userInput.lower() == 'up' or userInput.lower() == 'pu':
+    newPhrase = input('Give me a phrase: ')    
+    print(stripPunctuation(newPhrase).upper())
     print()
-    input('bye')
+    input('Goodbye')
     sys.exit()
-elif userInput == 'UL'.lower() or userInput == 'LU'.lower():
-    userInput = input('Give me a phrase: ')
-    userInput = userInput.translate(string.maketrans("",""), \
-                                    string.punctuation)
-    userInput = userInput.lower()
+elif userInput.lower() == 'pl' or userInput.lower() == 'lp':
+    newPhrase = input('Give me a phrase: ')
+    print(stripPunctuation(newPhrase).lower())
     print()
-    input('bye')
+    input('Goodbye')
     sys.exit()
-
-
-
-
