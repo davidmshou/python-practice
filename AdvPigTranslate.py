@@ -5,7 +5,7 @@
 import string
 
 #user input to list of strings
-wordList = raw_input("Give me a phrase!: ").split()
+wordList = input("Give me a phrase!: ").split()
 
 vowels = ['a', 'e', 'i', 'o', 'u']
 endPoints = ['?', '.', '!',',',':',';']

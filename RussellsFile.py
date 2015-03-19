@@ -1,7 +1,11 @@
-inputText = 'reverse this'
-outputText = ""
+import string
 
-print("Hello, World!")
 
-for x in range(len(inputText) + 1):
-	outputText('inputText[x]')
+
+def stripPunctuation(phrase):
+    newPhrase = ''.join(ch for ch in phrase if ch not in \
+                        string.punctuation)
+    return newPhrase
+
+userInput = input('give me a phrase: ')
+print(stripPunctuation(userInput))
