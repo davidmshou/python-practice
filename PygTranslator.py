@@ -6,15 +6,15 @@
 
 import sys
 import string
+import re
 
 endPoints = ['?', '.', '!',',',':',';']
 vowels = ['a','e','i','o','u']
 #totally made a script in Python Shell to create this list :D
 consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', \
               'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
-helpText = '''###Pyg Translator v0.2###
-
-    What do you want to do?
+startText = '###Pyg Translator v0.2###'
+helpText = """What do you want to do?
 Type:
      A for English-to-Pyg
      B for Pyg-to-English
@@ -24,28 +24,32 @@ Type:
      L for lower case
      U for upper case
      PL or PU for a combination
-     H for Help Text'''
+     H for Help Text"""
+
     
 def englishToPig(phrase):
     newPhrase = ''
-    print('''this feature returns all as lowercase!''')
+    print('This feature is a work-in-progress.')
     for word in phrase:
         newPhrase += etopHelper(word) + ' '
-    print('\n' + newPhrase[0:len(newPhrase) - 1] + '\n\n' + 'Done')
-    
+    print('\n' + newPhrase[0].upper() + newPhrase[1:len(newPhrase) - 1] \
+          + '\n\nDone\n')
+
+
 def etopHelper(word):
-    #make some attempt to rearrange punctuation
-    lastChar = ''
-    for i in range(0,len(word)):
-        if word[i] in endPoints:
-            lastChar = word[i]
-            word = word[0:i] + word[i + 1: ]
     word = word.lower()
     newWord = ''
     consSuffix = "ay"
     vowelSuffix = 'way'
     firstLetter = word[0:1]
     noFirstLetter = word[1: ]
+    lastChar = ''
+    #make some attempt to rearrange punctuation
+    for i in range(0,len(word)):
+        if word[i] in endPoints:
+            lastChar = word[i]
+            word = word[0:i] + word[i + 1: ]
+    
     #if word starts with a diphthong
     if word[0:2] == 'ch' or word[0:2] == 'qu' or word[0:2] == 'th' or \
            word[0:2] == 'ph':
@@ -81,14 +85,16 @@ def goatToEnglish(phrase):
     input('Goodbye')
     sys.exit()
 
+
 def stripPunctuation(phrase):
     newPhrase = ''.join(ch for ch in phrase if ch not in \
                         string.punctuation)
     return newPhrase
+
+
 #program start
+print(startText + '\n' + helpText)
 while 1:
-    print(helpText)
-    
     userInput = input()
     
     if userInput.lower() == 'a':
