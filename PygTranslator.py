@@ -1,9 +1,6 @@
 #Pyg Translator v0.2
 #by Russell Graham & David Shoubridge
 
-#feature idea:read-aloud feature that returns a phonetic word for
-#each letter(c becomes see)
-
 import sys
 import string
 import re
