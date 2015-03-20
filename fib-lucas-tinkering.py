@@ -3,7 +3,7 @@ def fibonacci(n):
     Return the nth value in the Fibonacci Series.
 
     Arg:
-        n(int): Index whose value will print.
+        n(int): Element of the series whose value will print.
     Return:
         The value in the Fibonacci Series that corresponds to the value of n.
     """
@@ -23,7 +23,7 @@ def lucas(n):
     Return the nth number in the Lucas Series.
 
     Arg:
-        n(int): Index within the Lucas series.
+        n(int): Element of the series whose value will print.
     Return:
         The value in the Lucas Series that corresponds to the value of n.
     """
@@ -46,7 +46,7 @@ def sum_series(n, x=0, y=1):
     it will create it's own series and return the nth value.
 
     Args:
-        n(int): Determines which value of the series to print.
+        n(int): Determines which element of the series whose value will print.
         x(int): Optional argument defaulted to 0, and will combine with y \
         to create series of integers.
         y(int): Optional argument defaulted to 1, and will combine with x \
@@ -66,4 +66,4 @@ def sum_series(n, x=0, y=1):
             series.append(series[i] + series[i + 1])
         return series[len(series) - 1]
 
-print(sum_series(2, 5, 7))
+print(sum_series(2))
