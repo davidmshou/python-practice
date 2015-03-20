@@ -66,4 +66,4 @@ def sum_series(n, x=0, y=1):
             series.append(series[i] + series[i + 1])
         return series[len(series) - 1]
 
-print(sum_series(0, 5, 7))
+print(sum_series(2, 5, 7))
