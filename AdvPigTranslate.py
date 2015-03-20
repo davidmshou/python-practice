@@ -1,46 +1,93 @@
+#
 #Translates user input into Pig Latin
+#
+
+import string
 
 #user input to list of strings
-wordList = 'this is a phrase dont be sad instead be rad'.split()#raw_input("Give me a phrase!: ").split()
+wordList = input("Give me a phrase!: ").split()
+
 vowels = ['a', 'e', 'i', 'o', 'u']
-#add features: handle punctuation, depigify words and phrases, setup wizard or handle user args
+endPoints = ['?', '.', '!',',',':',';']
+#add features:depigifier, startup wizard or handle args/modifiers
 
 #helper function to convert a given word
 def wordToPig(word):
+    #lowercase each word as they come in
     word = word.lower()
     newWord = ''
-    pigSuffix = "ay"
-    firstLetter = word[0:1]
+    aySuffix = "ay"
+    waySuffix = 'way'
+    firstLetter = word[0]
     noFirstLetter = word[1: ]
-    #if word starts with vowel or a diphthong
-    if word[0:2] == 'ch' or word[0:2] == 'qu' or word[0:2] == 'th' or word[0:2] == 'ph' or word[0] in vowels and len(word) > 1:
+    lastChar = ''
+
+    #rearrange punctuation
+    for i in range(0,len(word)):
+        if word[i] in endPoints:
+            lastChar = word[i]
+            word = word[0:i] + word[i + 1: ]
+            
+    #if starts with diphthong then move whole diphthong
+    if word[0:2] == 'ch' or word[0:2] == 'qu' or word[0:2] == 'th' \
+            or word[0:2] == 'ph':
         firstLetter = word[0:2]
         noFirstLetter = word[2: ]
-        newWord += noFirstLetter + firstLetter + pigSuffix
-    #if word is only 2 chars long and starts with vowel
-    elif len(word) == 2 and word[0] in vowels:
-        newWord += firstLetter + noFirstLetter + pigSuffix
-    elif len(word) == 2:
-        newWord += noFirstLetter + firstLetter + pigSuffix
-    #if word is only 1 char do nothing to it
+        newWord += noFirstLetter + firstLetter + aySuffix + lastChar
+    #if starts with vowel just end with way
+    elif word[0] in vowels:
+        newWord += firstLetter + noFirstLetter + waySuffix + lastChar
+    #if only 1 char long do nothing
     elif len(word) < 2:
-        newWord += firstLetter + noFirstLetter
-    #if no special case then do standard translation
+        newWord += firstLetter + lastChar
     else:
         firstLetter = word[0]
         noFirstLetter = word[1: ]
-        newWord += noFirstLetter + firstLetter + pigSuffix
+        newWord += noFirstLetter + firstLetter + aySuffix + lastChar
 
     return newWord
+
+#helper function to convert words back to english
+def wordFromPig(word):
+    word = word.lower()
+    newWord = ''
+    aySuffix = "ay"
+    waySuffix = 'way'
+    firstLetter = word[0]
+    noFirstLetter = word[1: ]
+    lastChar = ''
 
 #translates to pig latin given a list of strings
 def pigTranslate(phrase):
     newPhrase = ""
     for word in phrase:
         newPhrase += wordToPig(word) + ' '
+        
+    #capitalize the first letter
+    capFirst = newPhrase[0]
+    newPhrase = capFirst.upper() + newPhrase[1: ]
+    
     #return our piggy phrase minus the space at the very end
     return newPhrase[0:len(newPhrase) - 1]
-         
-print(pigTranslate(wordList))
+
+     
+#print(pigTranslate(wordList))
+#print('')
+#print('ankthay ouyay, oodbyegay')
+
+#translate pig latin back to english
+def depigify(phrase):
+    newPhrase = ''
+    for word in phrase:
+        newPhrase += wordFromPig(word) + ' '
+
+    #capitalize the first letter
+    capFirst = newPhrase[0]
+    newPhrase = capFirst.upper() + newPhrase[1: ]
+    
+    #return our english phrase minus the space at the very end
+    return newPhrase[0:len(newPhrase) - 1]
+
+print(depigify(wordList))
 print('')
-print('ankthay ouyay, oodbyegay')
+print('GOODBYE')
