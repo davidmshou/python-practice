@@ -12,6 +12,8 @@ message_text = "what is a baggins"
 cipher_list = list(alphabet_list)
 random.shuffle(cipher_list)
 
+print(cipher_list)
+
 cipher_text = ""
 
 for x in message_text:
